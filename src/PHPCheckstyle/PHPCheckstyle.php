@@ -3,6 +3,7 @@ namespace PHPCheckstyle;
 
 require_once __DIR__ . "/_Constants.php";
 
+use Error;
 use Exception;
 use PHPCheckstyle\Config\CheckArrayStyleConfig;
 use PHPCheckstyle\Config\CheckXMLStyleConfig;
@@ -3986,7 +3987,7 @@ class PHPCheckstyle
             try {
                 array_shift($args);
                 $formattedMsg = vsprintf($msg, $args);
-            } catch (Exception $e) {
+            } catch (Exception|Error $e) {
                 $formattedMsg = $msg;
             }
 
