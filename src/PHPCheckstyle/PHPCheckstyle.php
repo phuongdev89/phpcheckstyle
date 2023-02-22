@@ -14,6 +14,7 @@ use PHPCheckstyle\Reporter\ConsoleReporter;
 use PHPCheckstyle\Reporter\HTMLConsoleFormatReporter;
 use PHPCheckstyle\Reporter\HTMLFormatReporter;
 use PHPCheckstyle\Reporter\PlainFormatReporter;
+use PHPCheckstyle\Reporter\JunitFormatReporter;
 use PHPCheckstyle\Reporter\XmlConsoleFormatReporter;
 use PHPCheckstyle\Reporter\XmlFormatReporter;
 use PHPCheckstyle\Reporter\XmlNCSSReporter;
@@ -364,6 +365,9 @@ class PHPCheckstyle
         if (in_array("xml", $formats)) {
             $this->_reporter->addReporter(new XmlFormatReporter($outDir));
         }
+        if (in_array("junit", $formats)) {
+            $this->_reporter->addReporter(new JunitFormatReporter($outDir));
+        }
         if (in_array("xml_console", $formats)) {
             $this->_reporter->addReporter(new XmlConsoleFormatReporter());
         }
@@ -526,7 +530,7 @@ class PHPCheckstyle
      */
     public function processFiles($sources, $excludes = array())
     {
-        
+
         // Start reporting the results
         $this->_reporter->start();
 
